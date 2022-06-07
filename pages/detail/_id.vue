@@ -7,7 +7,6 @@
                 :src="product.imageUrl"
                 :alt="product.name"
                 />
-            </div>
             <div class="side-panel">
                 <p class="name">{{product.name}}</p>
                 <p class="price">{{product.price}}</p>
@@ -15,6 +14,8 @@
             </div>
         </div>
     </div>
+    </div>
+  
 </template>
 
 <script>
