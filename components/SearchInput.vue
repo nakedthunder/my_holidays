@@ -1,35 +1,35 @@
 <template>
     <div class="input-wrapper">
-        <input type="text" :value="value" class="search-input"
-        @input="$emit('input', $event.target.value)"/>
-        <button class="btn" type="button" @click="$emit('search')">search</button>
+        <input type="text" :value="searchKeyword" class="search-input" @input="$emit('input', $event.target.value)">
+        <button class="btn" @click="$emit('search')">click me</button>
     </div>
 </template>
 
 <script>
 export default {
-    //props로  :value="searchKeyword"로 묶인 상태 
-    props : {
-        value : {
-            type : String, 
-            default : () => '', //기본 문자열로 
-        },
-    },
+    props: {
+        searchKeyword: {
+            type: String,
+            default: () => '',
+        }
+    }
 }
 </script>
 
 <style scoped>
-.input-wrapper{
-    height : 40px;
-    margin : 1rem 0;
+.input-wrapper {
+    height: 40px;
+    margin: 1rem 0;
 }
-.search-input{ 
-    width : 200px;
-    font-size : 1.2rem;
-    font-weight: 500; 
+
+.search-input {
+    width: 200px;
+    font-size: 1.2rem;
+    font-weight: 500;
 }
-.btn{ 
-   font-size : 1.2rem;
+
+.btn {
+    font-size: 1.2rem;
     font-weight: 500;
 }
 </style>

@@ -1,71 +1,63 @@
 <template>
-    <div class="app">
-        <main>
-            <!-- <SearchInput :search-keyword="searchKeyword"
-            @input="updateSearchKeyword"></SearchInput> -->
-             <SearchInput v-model="searchKeyword" @search="searchProducts"></SearchInput>
-            <ul>
-                <li class="item flex" 
-                v-for="product in products" 
-                :key="product.id"
-                @click="moveToDetailPage(product.id)">
-                    <img class="product-image" :src="product.imageUrl" :alt="product.name">
-                    <p>{{product.name}}</p>
-                    <span>{{product.price}}</span>
-                </li>
-            </ul>
-            <div class="cart-wrapper">
-              <button class="btn" @click="moveToCartPage">장바구니 바로가기</button>
-            </div>
-        </main>
-    </div> 
+  <div class="app">
+    <main>
+      <!-- v-model 로 대신 사용할 수 있다. 
+            <SearchInput :search-keyword="searchKeyword" @input="updateSearchKeyword"></SearchInput> -->
+      <SearchInput v-model="searchKeyword" @search="searchProducts"></SearchInput>
+      <ul>
+        <li class="item flex" v-for="product in products" :key="product.id" @click="moveToDetailPage(product.id)">
+          <img class="product-image" :src="product.imageUrl" :alt="product.name">
+          <p>{{ product.name }}</p>
+          <span>{{ product.price }}</span>
+        </li>
+      </ul>
+    </main>
+  </div>
 </template>
+
+
 
 <script>
 import axios from 'axios'
-import SearchInput from '@/components/SearchInput.vue'
-import {fetchProductsByKeyword} from '@/api/index'
-
+import { fetchProductsByKeyword } from '@/api/index'
 
 export default {
-    components : {SearchInput},
-    async asyncData(){
-        const response = await axios.get('http://localhost:3000/products')
-        const products = response.data.map((item) => ({
-            ...item, 
-            imageUrl : `${item.imageUrl}?random=${Math.random()}`
-        }))
-        return { products }
-    },
-    data(){
-        return {
-            searchKeyword : '',
-        }
-    },
-    methods :{
-        //상세 페이지 이동 
-        moveToDetailPage(id){
-            console.log(id) //상세페이지를 클릭했을때 product.id를 확인할 수 있음 
-            this.$router.push(`detail/${id}`) //URL정의, 폴더 페이지 만들어줘야함 
-        },
-        async searchProducts(){
-          //searchProducts 올라올때 값이 무엇인지 암 검색하고자하는 입력된 값 
-          //this.searchKeyword 원하는 값이므로 보낸다. 
-          const response = await fetchProductsByKeyword(this.searchKeyword)
-          //console.log(response) 콘솔에 값 담긴거 볼 수 있음 
-
-          //this.products 현재 값이 있지않지만 return 값이 속성으로 정의
-          //인스턴스의 데이터 속성으로 존재 
-          console.log(response)
-          this.products = response.data.map((item) => ({
-              ...item, 
-              imageUrl : `${item.imageUrl}?random=${Math.random()}`
-          }))
-        },
-        moveToCartPage(){
-          this.$router.push('/cart')
-        }, 
+  async asyncData() {
+    const response = await axios.get('http://localhost:3000/products')
+    const products = response.data.map((item) => ({
+      ...item,
+      imageUrl: `${item.imageUrl}?random=${Math.random()}`
+    }))
+    console.log(products)
+    return { products }
+  },
+  data() {
+    return {
+      //데이터를 선언 후 부모페이지 -> 자식페이지로 값을 내려준다. 
+      searchKeyword: '',
     }
+  },
+  methods: {
+    moveToDetailPage(id) {
+      console.log("아이디값", id)
+      //페이지 이동 (detail > _id.vue)
+      this.$router.push(`detail/${id}`)
+    },
+    async searchProducts() {
+      console.log("입력값", this.searchKeyword)
+      //api모듈화함수 호출 
+      const response = await fetchProductsByKeyword(this.searchKeyword)
+      //this.products 값으로 search한 값을 뿌려줌 
+      this.products = response.data.map((item) => ({
+        ...item,
+        imageUrl: `${item.imageUrl}?random=${Math.random()}`
+      }))
+    }
+    //    updateSearchKeyword(keyword){
+    //        //하위 컴포넌트 input에서 받은 값을 상위컴포넌트로 내려받음  
+    //        this.searchKeyword = keyword
+    //    }
+  }
 }
 </script>
 
@@ -74,34 +66,38 @@ export default {
   display: flex;
   justify-content: center;
 }
+
 .item {
   display: inline-block;
+  /* <!--화면 크기에 따라 사진디피 달라짐 --> */
   width: 400px;
   height: 300px;
   text-align: center;
   margin: 0 0.5rem;
   cursor: pointer;
 }
+
 .product-image {
+  /*사진의 높이와 넓이 공간을 주어 잘 정리함*/
   width: 400px;
   height: 250px;
 }
+
 .app {
   position: relative;
 }
+
 .cart-wrapper {
   position: sticky;
   float: right;
   bottom: 50px;
   right: 50px;
 }
+
 .cart-wrapper .btn {
   display: inline-block;
   height: 40px;
   font-size: 1rem;
   font-weight: 500;
-}
-.list header{
-  height: 55px;
 }
 </style>

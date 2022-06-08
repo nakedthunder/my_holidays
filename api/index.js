@@ -1,21 +1,21 @@
+//api > index.js 
 import axios from 'axios'
-
+//api 모듈화 
 const instance = axios.create({
-    baseURL : 'http://localhost:3000',
+    baseURL : 'http://localhost:3000'
 })
 
+//상품 상세페이지 
 function fetchProductById(id){
     return instance.get(`/products/${id}`)
 }
 
-function fetchProductsByKeyword(keyword) {
+function fetchProductsByKeyword(keyword){
     return instance.get(`/products`, {
-      params: {
-        name_like: keyword,
-      },
+        params : {
+            name_like : keyword, 
+        }
     })
-    //return instance.get(`/products?name_like=${keyword}`)
+}
 
-  }
-
-export { fetchProductById, fetchProductsByKeyword}
+export {fetchProductById, fetchProductsByKeyword}
