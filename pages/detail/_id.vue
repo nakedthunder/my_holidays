@@ -7,6 +7,7 @@
       <div class="side-panel">
         <p class="name">{{ product.name }}</p>
         <span class="price">{{ product.price }}</span>
+        <button type="button" @click="addToCart">Add to Cart</button>
       </div>
     </div>
   </div>
@@ -20,6 +21,15 @@ export default {
     console.log("이거 나오면 ㅠ", response)
     const product = response.data
     return { product }
+  }, 
+  methods : {
+    addToCart() {
+      this.$router.push(`/cart`)
+      //mutations 호출 addCartItem
+      //인스턴스 내부적으로 연결되어 store접근가능
+      //this.product로 값 넘겨줌 
+      this.$store.commit(`addCartItem`, this.product)
+    }
   }
 }
 </script>

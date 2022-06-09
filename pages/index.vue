@@ -11,6 +11,9 @@
           <span>{{ product.price }}</span>
         </li>
       </ul>
+      <div class="cart-wrapper">
+        <button class="btn" @click="moveToCartPage">장바구니 바로가기</button>
+      </div>
     </main>
   </div>
 </template>
@@ -52,6 +55,9 @@ export default {
         ...item,
         imageUrl: `${item.imageUrl}?random=${Math.random()}`
       }))
+    }, 
+    moveToCartPage(){
+      this.$router.push(`/cart`)
     }
     //    updateSearchKeyword(keyword){
     //        //하위 컴포넌트 input에서 받은 값을 상위컴포넌트로 내려받음  
