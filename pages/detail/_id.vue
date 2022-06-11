@@ -7,14 +7,14 @@
       <div class="side-panel">
         <p class="name">{{ product.name }}</p>
         <span class="price">{{ product.price }}</span>
-        <button type="button" @click="addToCart">Add to Cart</button>
+        <button type="button" @click="addToCart">카트에 담기</button>
       </div>
     </div>
   </div>
 </template>
 <script>
 import axios from 'axios'
-import { fetchProductById } from '@/api/index'
+import { fetchProductById, createCartItem } from '@/api/index'
 export default {
   async asyncData({ params }) {
     const response = await fetchProductById(params.id)
@@ -23,7 +23,9 @@ export default {
     return { product }
   }, 
   methods : {
-    addToCart() {
+    async addToCart() {
+      const response = await createCartItem(this.product)
+      console.log('카트에 담겼나용?', response)
       this.$router.push(`/cart`)
       //mutations 호출 addCartItem
       //인스턴스 내부적으로 연결되어 store접근가능
