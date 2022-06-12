@@ -1,0 +1,42 @@
+.main_page_box {
+    text-align: center;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+}
+
+.item {
+    display: inline-block;
+    /* <!--화면 크기에 따라 사진디피 달라짐 --> */
+    width: 400px;
+    height: 300px;
+    text-align: center;
+    margin: 0 0.5rem;
+    cursor: pointer;
+}
+
+.product-image {
+    /*사진의 높이와 넓이 공간을 주어 잘 정리함*/
+    width: 400px;
+    height: 250px;
+}
+
+.app {
+    position: relative;
+}
+
+.cart-wrapper {
+    position: sticky;
+    float: right;
+    bottom: 50px;
+    right: 50px;
+}
+
+.cart-wrapper .btn {
+    display: inline-block;
+    height: 40px;
+    font-size: 1rem;
+    font-weight: 500;
+}

@@ -1,18 +1,23 @@
 <template>
   <div class="app">
     <main>
-      <!-- v-model 로 대신 사용할 수 있다. 
+      <div class="main_page_box">
+        <div class="main_page_name">
+          <h2>Park's GALLERY</h2>
+        </div>
+        <!-- v-model 로 대신 사용할 수 있다. 
             <SearchInput :search-keyword="searchKeyword" @input="updateSearchKeyword"></SearchInput> -->
-      <SearchInput v-model="searchKeyword" @search="searchProducts"></SearchInput>
-      <ul>
-        <li class="item flex" v-for="product in products" :key="product.id" @click="moveToDetailPage(product.id)">
-          <img class="product-image" :src="product.imageUrl" :alt="product.name">
-          <p>{{ product.name }}</p>
-          <span>{{ product.price }}</span>
-        </li>
-      </ul>
-      <div class="cart-wrapper">
-        <button class="btn" @click="moveToCartPage">장바구니 바로가기</button>
+        <SearchInput v-model="searchKeyword" @search="searchProducts"></SearchInput>
+        <ul>
+          <li class="item flex" v-for="product in products" :key="product.id" @click="moveToDetailPage(product.id)">
+            <img class="product-image" :src="product.imageUrl" :alt="product.name">
+            <p>{{ product.name }}</p>
+            <span>{{ product.price }}</span>
+          </li>
+        </ul>
+        <div class="cart-wrapper">
+          <button class="btn" @click="moveToCartPage">장바구니 바로가기</button>
+        </div>
       </div>
     </main>
   </div>
@@ -68,6 +73,17 @@ export default {
 </script>
 
 <style scoped>
+.main_page_box{
+  text-align: center;
+  padding-top: 50px;
+}
+.main_page_name {
+  padding-top: 20px;
+}
+.main_page_name h2 {
+  font-size: x-large;
+  font-weight: bold;
+}
 .flex {
   display: flex;
   justify-content: center;

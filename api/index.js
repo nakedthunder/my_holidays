@@ -17,9 +17,18 @@ function fetchProductsByKeyword(keyword){
         }
     })
 }
+//carts
+function fetchCartItems(){
+    return instance.get('/carts')
+}
 
 function createCartItem(cartItem){
     return instance.post('/carts', cartItem)
 }
 
-export {fetchProductById, fetchProductsByKeyword, createCartItem}
+//api 함수를 생성하였으면 export를 잘하자!! 호출할때마다 Object is not fnction뜸 
+export {
+    fetchProductById, 
+    fetchProductsByKeyword, 
+    createCartItem,
+    fetchCartItems}

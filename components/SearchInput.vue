@@ -20,6 +20,7 @@ export default {
 .input-wrapper {
     height: 40px;
     margin: 1rem 0;
+    margin-left: 520px;
 }
 
 .search-input {

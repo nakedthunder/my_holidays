@@ -1,3 +1,5 @@
+import {fetchCartItems} from "~/api"
+
 export const state = () => ({
     cartItems: [],
 })
@@ -12,5 +14,12 @@ export const mutations = {
         imageUrl: `${cartItem.imageUrl}?random=${Math.random()}`
       }
         state.cartItems.push(newCartItem)
+    }
+}
+
+export const actions = {
+    async FETCH_CART_ITEMS({commit}){
+        const response = await fetchCartItems()
+        console.log('액션스 값', response)
     }
 }
