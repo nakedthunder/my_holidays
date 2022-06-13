@@ -2,6 +2,7 @@
   <div class="app">
     <main>
       <div class="main_page_box">
+        <navigation></navigation>
         <div class="main_page_name">
           <h2>Park's GALLERY</h2>
         </div>
@@ -28,8 +29,10 @@
 <script>
 import axios from 'axios'
 import { fetchProductsByKeyword } from '@/api/index'
+import navigation from '../components/navigation.vue'
 
 export default {
+  components: { navigation },
   async asyncData() {
     const response = await axios.get('http://localhost:3000/products')
     const products = response.data.map((item) => ({
@@ -121,5 +124,8 @@ export default {
   height: 40px;
   font-size: 1rem;
   font-weight: 500;
+}
+.main_page_box{
+  padding-top: 0px;
 }
 </style>
