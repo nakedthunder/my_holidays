@@ -1,4 +1,6 @@
 import {fetchCartItems} from "~/api"
+//constants
+const FETCH_CART_ITEMS = 'FETCH_CART_ITEMS'
 
 export const state = () => ({
     cartItems: [],
@@ -18,7 +20,7 @@ export const mutations = {
 }
 
 export const actions = {
-    async FETCH_CART_ITEMS({commit}){
+    async[FETCH_CART_ITEMS]({commit}){
         const response = await fetchCartItems()
         console.log('액션스 값', response)
     }
