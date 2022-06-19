@@ -3,12 +3,10 @@
     <div class="container">
         <div class="main-panel">
             <img :src="photo.imageUrl" :alt="photo.name" class="product-image">
-            <p>{{ photo.name }}</p>
-            <span>{{ photo.price }}</span>
         </div>
         <div class="side-panel">
-            <p class="name"></p>
-            <span class="price"></span>
+            <p>{{ photo.name }}</p>
+            <span>{{ photo.price }}</span>
             <button type="button" @click="addToCart">카트에 담기</button>
         </div>
     </div>
@@ -41,5 +39,22 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.container {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+.product-image {
+    width: 500px;
+    height: 375px;
+}
+.side-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 220px;
+    text-align: center;
+    padding: 0 1rem;
+}
 </style>

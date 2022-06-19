@@ -12,7 +12,7 @@
         <div class="gallery_items_list">
           <ul>
             <li class="item flex" v-for="photo in photos" :key="photo.id" @click="moveToDetailPage(photo.id)">
-              <img :src="photo.imageUrl" :alt="photo">
+              <img :src="photo.imageUrl" :alt="photo" class="product-image">
               <p id="photo_name">{{ photo.name }}</p>
               <p id="photo_price">{{ photo.price }}</p>
             </li>
@@ -69,5 +69,57 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.main_page_box{
+  text-align: center;
+  padding-top: 50px;
+}
+.main_page_name {
+  padding-top: 20px;
+}
+.main_page_name h2 {
+  font-size: x-large;
+  font-weight: bold;
+}
+.flex {
+  display: flex;
+  justify-content: center;
+}
+
+.item {
+  display: inline-block;
+  /* <!--화면 크기에 따라 사진디피 달라짐 --> */
+  width: 400px;
+  height: 300px;
+  text-align: center;
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+
+.product-image {
+  /*사진의 높이와 넓이 공간을 주어 잘 정리함*/
+  width: 400px;
+  height: 250px;
+}
+
+.app {
+  position: relative;
+}
+
+.cart-wrapper {
+  position: sticky;
+  float: right;
+  bottom: 50px;
+  right: 50px;
+}
+
+.cart-wrapper .btn {
+  display: inline-block;
+  height: 40px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.main_page_box{
+  padding-top: 0px;
+}
 </style>
