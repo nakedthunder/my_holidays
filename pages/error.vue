@@ -5,16 +5,16 @@
         </div>
         <div class="server_error_page_body">
             <div class="server_error_heade_msg">
-                <p>삼성웰스토리몰 서버 점검 안내</p>
+                <p>서버 점검 안내</p>
             </div>
             <div class="server_error_body_msg">
-                <span>불편을 끼쳐드려서 죄송합니다.<br> 온라인 쇼핑몰 및 모바일 앱 시스템 안정화를 위해 서비스 점검 중입니다.<br> 점검시간 동안 서비스 이용이 일시 중단되오니 고객님의 깊은
+                <span>불편을 끼쳐드려서 죄송합니다.<br> 갤러리 웹 사이트 및 모바일 앱 시스템 안정화를 위해 서비스 점검 중입니다.<br> 점검시간 동안 서비스 이용이 일시 중단되오니 고객님의 깊은
                     양해 부탁 드립니다.</span>
             </div>
             <div class="server_info_box">
                 <ul>
                     <li><strong>점검시간</strong> 2022.08.15 24:00 ~ 2022.08.16 06:00</li>
-                    <li><strong>고객센터</strong> 080-288-5252 / welmall.sei@samsung.com</li>
+                    <li><strong>고객센터</strong> 080-888-8888 </li>
                 </ul>
             </div>
         </div>
