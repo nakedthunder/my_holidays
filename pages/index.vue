@@ -1,6 +1,7 @@
 <template>
   <div class="app">
     <main>
+      <navbar />
       <div class="main_page_box">
         <div class="searchInput_box">
           <!--searchInput components-->
@@ -11,8 +12,8 @@
         </div>
         <div class="gallery_items_list">
           <ul>
-            <li class="item flex" v-for="photo in photos" :key="photo.id" @click="moveToDetailPage(photo.id)">
-              <img :src="photo.imageUrl" :alt="photo" class="product-image">
+            <li class="item flex" v-for="photo, idx in photos" :key="idx" @click="moveToDetailPage(photo.id)">
+              <img :src="photo.imageUrl" :alt="photo.name" class="product-image">
               <p id="photo_name">{{ photo.name }}</p>
               <p id="photo_price">{{ photo.price }}</p>
             </li>
@@ -29,7 +30,9 @@
 <script>
 import axios from 'axios'
 import SearchInput from '@/components/SearchInput.vue'
+import navbar from '@/components/navbar.vue'
 import { fetchProductsByKeyword } from '@/api/index'
+
 
 export default {
   data() {
@@ -40,12 +43,13 @@ export default {
   async asyncData() {
     const response = await axios.get('http://localhost:3000/products')
     const value = response.data
-    console.log("값 ㅎㅇ", value)
-    //imageUrl 랜덤으로 돌리기 
-    const photos = response.data.map((item) => ({
-      ...item,
-      imageUrl: `${item.imageUrl}?random=${Math.random()}`
+    console.log("값 ㅎㅇ", value.length)
+
+    const photoVal = response.data.map((item) => ({
+        ...item, 
+        imageUrl : `${item.imageUrl}?random=${Math.random()}`
     }))
+    var photos = photoVal.splice(0, 14)
 
     return { photos }
   },
@@ -70,17 +74,17 @@ export default {
 </script>
 
 <style scoped>
-.main_page_box{
+.main_page_box {
   text-align: center;
-  padding-top: 50px;
+  padding-top: 100px;
+  /*padding: 40px 200px; 아 내가 padding을 위아래 옆으로 다 줘서 버튼이 구겨졌구나...*/
+
 }
-.main_page_name {
-  padding-top: 20px;
+
+ul {
+  list-style: none;
 }
-.main_page_name h2 {
-  font-size: x-large;
-  font-weight: bold;
-}
+
 .flex {
   display: flex;
   justify-content: center;
@@ -88,7 +92,6 @@ export default {
 
 .item {
   display: inline-block;
-  /* <!--화면 크기에 따라 사진디피 달라짐 --> */
   width: 400px;
   height: 300px;
   text-align: center;
@@ -97,7 +100,6 @@ export default {
 }
 
 .product-image {
-  /*사진의 높이와 넓이 공간을 주어 잘 정리함*/
   width: 400px;
   height: 250px;
 }
@@ -119,7 +121,8 @@ export default {
   font-size: 1rem;
   font-weight: 500;
 }
-.main_page_box{
+
+.main_page_box {
   padding-top: 0px;
 }
 </style>
