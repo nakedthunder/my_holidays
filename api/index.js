@@ -4,9 +4,14 @@ const instance = axios.create ({
     baseURL : 'http://localhost:3000'
 })
 
+function fetchProducts(){
+    const data = instance.get(`/products`)
+    return data
+}
+
 function fetchProductById(id) {
     const data = instance.get(`/products/${id}`)
-    console.log("여기서 뾰로롱", data)
+    console.log("사진 조회: ", data)
     return data 
 }
 
@@ -38,5 +43,6 @@ export {
     fetchProductById,
     fetchProductsByKeyword,
     createCartItem, 
-    fetchCartItems
+    fetchCartItems,
+    fetchProducts
 }

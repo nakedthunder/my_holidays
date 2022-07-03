@@ -31,7 +31,7 @@
 import axios from 'axios'
 import SearchInput from '@/components/SearchInput.vue'
 import navbar from '@/components/navbar.vue'
-import { fetchProductsByKeyword } from '@/api/index'
+import { fetchProducts, fetchProductsByKeyword } from '@/api/index'
 
 
 export default {
@@ -41,7 +41,8 @@ export default {
     }
   },
   async asyncData() {
-    const response = await axios.get('http://localhost:3000/products')
+    //const response = await axios.get('http://localhost:3000/products')
+    const response = await fetchProducts()
     const value = response.data
     console.log("값 ㅎㅇ", value.length)
 
@@ -80,16 +81,13 @@ export default {
   /*padding: 40px 200px; 아 내가 padding을 위아래 옆으로 다 줘서 버튼이 구겨졌구나...*/
 
 }
-
 ul {
-  list-style: none;
+   list-style: none;
 }
-
 .flex {
   display: flex;
   justify-content: center;
 }
-
 .item {
   display: inline-block;
   width: 400px;
@@ -98,31 +96,29 @@ ul {
   margin: 0 0.5rem;
   cursor: pointer;
 }
-
 .product-image {
   width: 400px;
   height: 250px;
 }
-
 .app {
   position: relative;
 }
-
 .cart-wrapper {
   position: sticky;
   float: right;
   bottom: 50px;
   right: 50px;
 }
-
 .cart-wrapper .btn {
   display: inline-block;
   height: 40px;
   font-size: 1rem;
   font-weight: 500;
 }
-
-.main_page_box {
+.main_page_box{
   padding-top: 0px;
+}
+#name {
+  margin-top: 8px;
 }
 </style>

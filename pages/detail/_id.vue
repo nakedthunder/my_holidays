@@ -4,11 +4,11 @@
         <div class="main-panel">
             <img :src="photo.imageUrl" :alt="photo.name" class="product-image">
         </div>
-        <div class="side-panel">
-            <p>{{ photo.name }}</p>
-            <span>{{ photo.price }}</span>
-            <button type="button" @click="addToCart">카트에 담기</button>
-        </div>
+    <div class="side-panel">
+        <p id="photo_name">{{photo.name}}</p>
+        <p id="photo_price">{{photo.price}}</p>
+        <button class="btnLike" type="button" @click="addToCart">LIKE</button>
+    </div>
     </div>
 </template>
 
@@ -39,22 +39,43 @@ export default {
 }
 </script>
 
+
 <style scoped>
 .container {
     display: flex;
     justify-content: center;
-    margin: 2rem 0;
+    margin: 10rem 0;
 }
 .product-image {
     width: 500px;
     height: 375px;
 }
-.side-panel {
+.main-panel {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    width: 220px;
-    text-align: center;
+}
+.side-panel {
     padding: 0 1rem;
+    padding-left: 40px;
+}
+#photo_name {
+    font-size: 25px;
+    font-weight: 500;
+}
+#photo_name, 
+#photo_price {
+    padding-bottom: 10px;
+}
+.btnLike {
+    border-radius: 40px;
+    background: #7530ff;
+    color: white;
+    border: none;
+    width: 60px;
+    height: 35px;
+    font-size: 13px;
+}
+button {
+    margin-top: 50px;
 }
 </style>
