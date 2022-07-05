@@ -35,14 +35,15 @@ export const mutations = {
         }
         state.cartItems.push(newCartItem)
     }, 
-    setCartItems(state, cartItems) {
-        state.cartItems = cartItems
+    setCartItems(state, newCartItem) {
+        
+        state.cartItems = newCartItem
     }
 }
 
 export const actions = {
     async [FETCH_CART_ITEMS]({commit}) {
         const {data} = await fetchCartItems()
-        commit('setCartItems', data)
+        //commit('setCartItems', data)
     }
 }

@@ -4,9 +4,6 @@
             <div class="navbar_logo">
                 <a href="#">Park's Gallery</a>
             </div>
-            <div class="navbar_menu">
-                <button class="navBtn"></button>
-            </div>
         </nav>
     </div>
 </template>
@@ -33,10 +30,5 @@ export default {
     line-height: 40px;
     font-size: 30px;
     font-weight: normal;
-}
-
-.navBtn {
-    /* background: url("/imgs/Union.svg") no-repeat; */
-    background-size: 100% 100%;
 }
 </style>
