@@ -3,6 +3,7 @@
         <div class="search_inner">
             <input type="text" :value="value" class="search-input" @input="$emit('input', $event.target.value)"
                 @keyup.enter="$emit('search')" :placeholder="placeholder" />
+            <button id="cancel" class="btn" @click="$emit('cancel')">X</button>
             <button class="btn" type="button" @click="$emit('search')"></button>
         </div>
     </div>
@@ -60,5 +61,12 @@ export default {
 
 .search-input:focus {
     outline: none;
+}
+#cancel {
+    border-radius: 50%;
+    font-size: 14px;
+    border: 0.5px solid #BEBEBE;
+    background: white;
+
 }
 </style>

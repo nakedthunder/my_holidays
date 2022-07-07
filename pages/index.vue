@@ -5,22 +5,22 @@
       <div class="main_page_box">
         <div class="searchInput_box">
           <!--searchInput components-->
-          <SearchInput v-model="searchKeyword" @search="searchProducts"></SearchInput>
+          <SearchInput v-model="searchKeyword" @keyup.enter="searchProducts" @search="searchProducts"
+            @cancel="cancel" />
         </div>
         <div class="tabList_box">
           <!--tab components-->
         </div>
         <div class="gallery_items_list">
           <ul>
-            <li class="item flex" v-for="photo, idx in photos" :key="idx" @click="moveToDetailPage(photo.id)">
+            <li class="item flex" v-for="photo, idx in photoCnt" :key="idx" @click="moveToDetailPage(photo.id)">
               <img :src="photo.imageUrl" :alt="photo.name" class="product-image">
               <p id="photo_name">{{ photo.name }}</p>
-              <p id="photo_price">{{ photo.price }}</p>
             </li>
           </ul>
         </div>
         <div class="cart-wrapper">
-          <button>장바구니</button>
+          <button class="like_btn" @click="likePage">MY LIKE</button>
         </div>
       </div>
     </main>
@@ -50,9 +50,9 @@ export default {
         ...item, 
         imageUrl : `${item.imageUrl}?random=${Math.random()}`
     }))
-    var photos = photoVal.splice(0, 14)
+    var photoCnt = photoVal.splice(0, 14)
 
-    return { photos }
+    return { photoCnt }
   },
   methods: {
     moveToDetailPage(id) {
@@ -64,11 +64,17 @@ export default {
       //input 값 this.serachKeyword 값을 api함수호출로 넘기기 
       const response = await fetchProductsByKeyword(this.searchKeyword)
       console.log("검색값", response)
-      //this.photos!!! 에 response.data값을 넣어주기 **
-      this.photos = response.data.map((item) => ({
+      //this.photoCnt!!! 에 response.data값을 넣어주기 **
+      this.photoCnt = response.data.map((item) => ({
         ...item,
         imageUrl: `${item.imageUrl}?random=${Math.random()}`
       }))
+    },
+    cancel() {
+      this.searchKeyword = ''
+    },
+    likePage() {
+      this.$router.push(`/cart`)
     }
   }
 }
@@ -120,5 +126,14 @@ ul {
 }
 #name {
   margin-top: 8px;
+}
+.like_btn {
+  border-radius: 40px;
+  background: #7530ff;
+  color: white;
+  border: none;
+  width: 100px;
+  height: 70px;
+  font-size: 17px;
 }
 </style>
