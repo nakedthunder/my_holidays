@@ -1,20 +1,21 @@
 <template>
   <div class="main_outter">
-      <main>
-          <navbar />
-          <div class="main_page_box">
-              <mainUtil />
-          </div>
-      </main>
+    <main>
+      <navbar />
+      <mainUtil />
+      <footerPage />
+    </main>
   </div>
 </template>
 
 <script>
 import navbar from '@/components/navbar.vue'
+import footerPage from '@/components/footerPage.vue'
 import mainUtil from '@/components/main/mainUtil.vue'
 
+
 export default {
-  components: { navbar, mainUtil },
+  components: { navbar, mainUtil, footerPage },
 
 }
 </script>
