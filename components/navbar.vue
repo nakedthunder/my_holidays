@@ -2,7 +2,7 @@
     <div class="nav_outter">
         <nav id="navbar">
             <div class="navbar_logo">
-                <a href="#">Park's Gallery</a>
+                <a href="#">my holidays</a>
             </div>
         </nav>
     </div>
